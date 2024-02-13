@@ -11,6 +11,9 @@ python -m venv api_scorer_env
 source api_scorer_env/bin/activate
 pip install -r requirements.txt
 ```
+# Data
+Put data in path ('./data/data.xlsx')
+
 
 # Run analysis
 
