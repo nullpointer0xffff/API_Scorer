@@ -1,0 +1,7 @@
+pandas
+plotly
+scikit-learn
+tfidf
+openpyxl
+ipywidgets>=7.5
+statsmodels
