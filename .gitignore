@@ -9,6 +9,11 @@ api_scorer_env/
 data
 *xlsx
 *csv
+*.png
+
+# checkpoint
+*pth
+
 
 # C extensions
 *.so
