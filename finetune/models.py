@@ -3,7 +3,7 @@ from torch import nn
 from transformers import DebertaV2Model
 
 
-MODEL_PATH = "/Users/jiehu/Documents/LLM/deberta-v3-base"
+MODEL_PATH = "./deberta-v3-base"
 
 class CustomDebertaClassifier(nn.Module):
     def __init__(self, num_labels=5, num_layers=1, device='mps'):
