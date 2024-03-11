@@ -25,7 +25,8 @@ class APIDocumentDataset(Dataset):
         df['labels'] = df['score'] - 1  # Adjust labels if needed (e.g., to start from 0)
         
         self.df = df
-
+        self.label_count = df.groupby(['labels'])['score'].count().reset_index().to_dict()['score']
+        
     def __len__(self):
         return len(self.df)
 
@@ -36,6 +37,7 @@ class APIDocumentDataset(Dataset):
             'input_ids': row['input_ids'],
             'attention_mask': row['attention_mask'],
             'labels': row['labels'],
+            'api_doc': row['api_doc'],
         }
         
     @classmethod
@@ -48,11 +50,11 @@ class APIDocumentDataset(Dataset):
         # Create data loaders
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
         val_loader = DataLoader(val_dataset, num_workers=8, batch_size=batch_size, shuffle=False)
-        return train_loader, val_loader
+        return train_loader, val_loader, _dataset.label_count
     
     
     @classmethod
-    def get_test_dataloaders(cls, test_data_path:str = TEST_DATASET_PATH, batch_size=8):
+    def get_test_dataloaders(cls, test_data_path:str = TEST_DATASET_PATH, batch_size=1):
         _dataset = APIDocumentDataset(test_data_path)
         return DataLoader(_dataset, num_workers=8, batch_size=batch_size, shuffle=False)
         

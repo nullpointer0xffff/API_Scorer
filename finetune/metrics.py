@@ -47,6 +47,10 @@ class DocMetric(Metric):
         avg_precision = sum(precision) / self.num_classes
         avg_recall = sum(recall) / self.num_classes
         avg_f1 = sum(f1) / self.num_classes
+        
+        precision = [p.item() for p in precision]
+        recall = [r.item() for r in recall]
+        f1 = [r.item() for r in f1]
 
         logger.info(f"Overall Precision: {avg_precision}")
         logger.info(f"Detail of precisions by class: \n{precision}\n")

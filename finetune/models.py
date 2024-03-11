@@ -12,6 +12,7 @@ class CustomDebertaClassifier(nn.Module):
 
         # Load and freeze DeBERTa
         self.deberta = DebertaV2Model.from_pretrained(MODEL_PATH)
+        # freeze weights
         for param in self.deberta.parameters():
             param.requires_grad = False
 
